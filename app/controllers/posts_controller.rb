@@ -9,8 +9,9 @@ class PostsController < ApplicationController
 
   def new
     @post = Post.new
+    authorize! :create, Post, message: "You need to be a member to create a new post."
   end
-
+end
 # Adding a create method to the posts_controller.rb
 
 def create
@@ -22,6 +23,8 @@ def create
     flash[:error] = "There was an error saving the post. Please try again."
     render :new
   end
+   authorize! :create, @post, message: "You need to be signed up to do that."
+    if @post.save
 end
 
   def edit
