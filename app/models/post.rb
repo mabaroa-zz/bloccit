@@ -1,9 +1,10 @@
 # models/post.rb
 class Post < ActiveRecord::Base
-  attr_accessible :body, :title, :topic
+  attr_accessible :body, :title, :topic, :image, :comment
   has_many :comments
   belongs_to :user
   belongs_to :topic
+  mount_uploader :image, ImageUploader
 
   default_scope order('created_at DESC')
 
@@ -13,8 +14,3 @@ class Post < ActiveRecord::Base
   validates :user, presence: true  
 end
 
-# models/topic.rb
-class Topic < ActiveRecord::Base
-  attr_accessible :description, :name, :public
-  has_many :posts
-end

@@ -1,4 +1,4 @@
-<%= form_for [topic, post], html: { class: 'form-horizontal' } do |f| %>
+<%= form_for [topic, post], html: { :mulitpart => true, class: 'form-horizontal' } do |f| %>
   <% if post.errors.any? %>
     <div class="alert alert-block">
       <h4>There are <%= pluralize(post.errors.count, "error") %>.</h4>
@@ -23,7 +23,10 @@
   <% end %>
   <div class="control-group">
     <div class="controls">
+      <%= f.file_field :image %>
       <%= f.submit "Save", class: 'btn' %>
     </div>
   </div>
+ 
 <% end %>
+
